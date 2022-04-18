@@ -1,0 +1,25 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk11
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+  pg-tasks:
+    image: postgres:9
+    container_name: pg-tasks
+    environment:
+      POSTGRES_DB: tasks
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+  backend-tasks:
+    depends_on:
+      - pg-tasks
+    build: ./tasks-backend 
+    ports:
+      - "8080:8080"
+
+volumes:
+  jenkins_home:
