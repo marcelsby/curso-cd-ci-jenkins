@@ -19,7 +19,14 @@ services:
       - pg-tasks
     build: ./tasks-backend 
     ports:
-      - "8080:8080"
+      - "8081:8081"
+  frontend-tasks:
+    depends_on:
+      - pg-tasks
+      - backend-tasks
+    build: ./tasks-frontend
+    ports:
+      - "8082:8080"
 
 volumes:
   jenkins_home:
