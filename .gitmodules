@@ -1,0 +1,6 @@
+[submodule "devops/tasks-backend"]
+	path = devops/tasks-backend
+	url = https://github.com/marcelsby/tasks-backend
+[submodule "devops/tasks-frontend"]
+	path = devops/tasks-frontend
+	url = https://github.com/marcelsby/tasks-frontend
