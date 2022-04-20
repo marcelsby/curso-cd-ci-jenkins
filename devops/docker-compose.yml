@@ -14,19 +14,12 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
-  backend-tasks:
+  tasks-app:
     depends_on:
       - pg-tasks
-    build: ./tasks-backend 
+    build: .
     ports:
-      - "8081:8081"
-  frontend-tasks:
-    depends_on:
-      - pg-tasks
-      - backend-tasks
-    build: ./tasks-frontend
-    ports:
-      - "8082:8080"
+      - "8001:8001"
 
 volumes:
   jenkins_home:
