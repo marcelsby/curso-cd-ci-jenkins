@@ -1,6 +1,6 @@
 [submodule "tasks-frontend"]
 	path = tasks-frontend
-	url = ./tasks-frontend
+	url = https://github.com/marcelsby/tasks-frontend
 [submodule "tasks-backend"]
 	path = tasks-backend
-	url = ./tasks-backend
+	url = https://github.com/marcelsby/tasks-backend
