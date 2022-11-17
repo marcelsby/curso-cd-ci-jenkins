@@ -7,3 +7,6 @@
 [submodule "tasks-api-test"]
 	path = tasks-api-test
 	url = https://github.com/marcelsby/tasks-api-test
+[submodule "tasks-functional-test"]
+	path = tasks-functional-test
+	url = https://github.com/marcelsby/tasks-functional-test
