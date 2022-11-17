@@ -4,3 +4,6 @@
 [submodule "tasks-backend"]
 	path = tasks-backend
 	url = https://github.com/marcelsby/tasks-backend
+[submodule "tasks-api-test"]
+	path = tasks-api-test
+	url = https://github.com/marcelsby/tasks-api-test
