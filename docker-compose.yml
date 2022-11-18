@@ -1,6 +1,6 @@
 services:
   jenkins:
-    image: jenkins/jenkins:lts-jdk11
+    build: ./docker/jenkins
     volumes:
       - jenkins_home:/var/jenkins_home
     networks:
@@ -20,12 +20,12 @@ services:
   tasks-app:
     depends_on:
       - pg-tasks
-    build: .
+    build: ./docker/tasks-app
     ports:
       - "8001:8001"
   sonarqube:
     container_name: sonar
-    build: ./sonar-conf
+    image: sonarqube
     ports:
       - "9000:9000"
     networks:
@@ -49,6 +49,31 @@ services:
       POSTGRES_PASSWORD: sonar
     volumes:
       - sonarqube_pg_data:/var/lib/postgresql/data
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+  selenium-node-1:
+    image: selenium/node-chrome:latest
+    depends_on:
+      - selenium-hub
+    environment:
+      SE_EVENT_BUS_HOST: selenium-hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+    shm_size: 2gb
+  selenium-node-2:
+    image: selenium/node-chrome:latest
+    depends_on:
+      - selenium-hub
+    environment:
+      SE_EVENT_BUS_HOST: selenium-hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+    shm_size: 2gb
 
 networks:
   sonarnet:
